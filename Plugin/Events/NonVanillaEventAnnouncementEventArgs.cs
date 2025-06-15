@@ -14,7 +14,8 @@ namespace ExHooks.Events
 
         /// <summary>
         /// Called each time there's an event announcement message that's not from vanilla.<br/>
-        /// Allows plugin to customize modded event announcement message.
+        /// Allows plugin to customize modded event announcement message.<br/>
+        /// Pretty much an exclusive hook for CustomEvent plugin.
         /// </summary>
         public static event EventHandler<ModdedEventAnnouncementEventArgs>? ModdedEventAnnouncement;
 

@@ -22,7 +22,7 @@ namespace ExHooks.Mods
             csr.Emit(OpCodes.Ldloc, 4);
             csr.Emit(OpCodes.Ldloc, 5);
             csr.EmitDelegate(ExHooks.Events.Invasion.InvokeSpawnEventNPC);
-            csr.Emit(OpCodes.Brfalse, targetLabel);
+            csr.Emit(OpCodes.Brtrue, targetLabel);
         }
 
         public void Deregister()

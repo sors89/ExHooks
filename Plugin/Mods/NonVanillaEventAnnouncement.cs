@@ -43,7 +43,7 @@ namespace ExHooks.Mods
             csr.Emit(OpCodes.Ldstr, "");
             csr.Emit(OpCodes.Call, typeof(string).GetMethod("op_Equality"));
             csr.Emit(OpCodes.Nop);
-            csr.Emit(OpCodes.Ldsfld, typeof(Terraria.Main).GetField("netMode"));
+            csr.Emit(OpCodes.Ldsfld, typeof(Terraria.Main).GetField("invasionType"));
             csr.Emit(OpCodes.Ldc_I4_4);
             csr.Emit(OpCodes.Nop);
             csr.Emit(OpCodes.Ldloca, 0);
