@@ -10,7 +10,7 @@ namespace ExHooks
         public override string Author => "sors89";
         public override string Description => "Extra hooks that might be useful for TShock modding!!!";
         public override string Name => "ExHooks";
-        public override Version Version => new Version(1, 1, 1);
+        public override Version Version => new Version(1, 1, 2);
 
         internal static HashSet<IHook>? hookInstances;
         public Core(Main game) : base(game)
