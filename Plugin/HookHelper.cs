@@ -18,6 +18,17 @@ namespace ExHooks
             return type.GetMethod(name, query, null, parameters, null);
         }
 
+        public static ConstructorInfo? EzGetConstructor<T>(Type[]? parameters = null) => EzGetConstructor(typeof(T), parameters);
+        public static ConstructorInfo? EzGetConstructor(Type type, Type[]? parameters = null)
+        {
+            BindingFlags query = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+            if (parameters == null)
+            {
+                return type.GetConstructor(query, Type.EmptyTypes);
+            }
+            return type.GetConstructor(query, parameters);
+        }
+
         public class DisposableHookCollection
         {
             internal List<ILHook> ilHooks = new List<ILHook>();
@@ -42,10 +53,18 @@ namespace ExHooks
                 => ilHooks.Add(new ILHook(EzGetMethod<T>(methodName, parameters), to));
             public void ILHook(Type type, string methodName, ILContext.Manipulator to, Type[]? parameters = null)
                 => ilHooks.Add(new ILHook(EzGetMethod(type, methodName, parameters), to));
+            public void ILHook<T>(ILContext.Manipulator to, Type[]? parameters = null)
+                => ilHooks.Add(new ILHook(EzGetConstructor(typeof(T), parameters), to));
+            public void ILHook(Type type, ILContext.Manipulator to, Type[]? parameters = null)
+                => ilHooks.Add(new ILHook(EzGetConstructor(type, parameters), to));
             public void MMHook<T>(string methodName, Delegate to, Type[]? parameters = null)
                 => mmHooks.Add(new Hook(EzGetMethod<T>(methodName, parameters), to));
             public void MMHook(Type type, string methodName, Delegate to, Type[]? parameters = null)
                 => mmHooks.Add(new Hook(EzGetMethod(type, methodName, parameters), to));
+            public void MMHook<T>(Delegate to, Type[]? parameters = null)
+                => mmHooks.Add(new Hook(EzGetConstructor<T>(parameters), to));
+            public void MMHook(Type type, Delegate to, Type[]? parameters = null)
+                => mmHooks.Add(new Hook(EzGetConstructor(type, parameters), to));
         }
     }
 }

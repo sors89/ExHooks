@@ -1,7 +1,7 @@
 ﻿
 namespace ExHooks.Events
 {
-    public static partial class World
+    public static partial class Invasion
     {
         public class CheckDaytimeEventRequirementsEventArgs : EventArgs
         {

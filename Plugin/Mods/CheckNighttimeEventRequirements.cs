@@ -17,7 +17,7 @@ namespace ExHooks.Mods
                          i => i.OpCode == OpCodes.Brtrue);
 
             var targetLabel = csr.Previous.Operand;
-            csr.EmitDelegate(ExHooks.Events.World.InvokeCheckNighttimeEventRequirements);
+            csr.EmitDelegate(ExHooks.Events.Invasion.InvokeCheckNighttimeEventRequirements);
             csr.Emit(OpCodes.Brtrue, targetLabel);
         }
 
